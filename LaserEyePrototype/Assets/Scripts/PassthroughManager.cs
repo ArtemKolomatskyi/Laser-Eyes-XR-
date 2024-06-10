@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PassthroughManager : MonoBehaviour
 {
-    [SerializeField] private OVRPassthroughLayer passthroughLayer1; // Default layer OnGameStarted
-    [SerializeField] private OVRPassthroughLayer passthroughLayer2; // Alternate layer OnGameOver
-    [SerializeField] private OVRPassthroughLayer passthroughLayer3; // Alternate layer OnPowerUp
+    [SerializeField] private OVRPassthroughLayer defaultPassthroughLayer; // Default layer OnGameStarted
+    [SerializeField] private OVRPassthroughLayer powerUpPassthroughLayer; // Alternate layer OnGameOver
+    [SerializeField] private OVRPassthroughLayer gameOverPassthroughLayer; // Alternate layer OnPowerUp
 
     private OVRPassthroughLayer[] passthroughLayers;
 
     void Start()
     {
         // Initialize the array of passthrough layers
-        passthroughLayers = new OVRPassthroughLayer[] { passthroughLayer1, passthroughLayer2, passthroughLayer3 };
+        passthroughLayers = new OVRPassthroughLayer[] { defaultPassthroughLayer, powerUpPassthroughLayer, gameOverPassthroughLayer };
         // Ensure only the first layer is enabled initially
         SetActiveLayer(0);
     }
