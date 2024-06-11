@@ -19,12 +19,14 @@ public class EnemyNavMeshAgentController : MonoBehaviour
     private bool _destinationIsValid = false;
     private Vector3 _previousEnemyPosition;
     private Transform _player;
+    private GameManager _gameManager;
     
     void Start()
     {
         if (!_navMeshAgent) _navMeshAgent = GetComponent<NavMeshAgent>();
         InitNavMeshAgent();
         _player = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        _gameManager = FindObjectOfType<GameManager>();
     }
 
     // This method is called on Start method because the script component is on Enemy gameobject which is spawned later on in game
@@ -59,12 +61,12 @@ public class EnemyNavMeshAgentController : MonoBehaviour
                 Vector3 dest = _nullableTargetDestination ?? Vector3.zero;
                 if (!DestinationPointIsReachableByNavAgent(dest))
                 {
-                    Debug.Log("Destination Point generated is unreachable by the NavMeshAgent. Finding another one...");
+                    // log("Destination Point generated is unreachable by the NavMeshAgent. Finding another one...");
                     _nullableTargetDestination = null;
                 }
                 if(Vector3.Distance(dest, _player.position) > _maxDistanceFromPlayer)
                 {
-                    Debug.Log("Destination Point is far away from player. Finding another one...");
+                    // log("Destination Point is far away from player. Finding another one...");
                     _nullableTargetDestination = null;
                 }
             }
@@ -73,7 +75,7 @@ public class EnemyNavMeshAgentController : MonoBehaviour
         _navMeshAgent.SetDestination(_targetDestination);
         _previousEnemyPosition = _navMeshAgent.transform.position;
         _destinationIsValid = true;
-        Debug.Log("New NavMesh TargetDestination for "+gameObject+" = "+_targetDestination);
+        log("New NavMesh TargetDestination for "+gameObject+" = "+_targetDestination);
     }
 
     private Vector3? FindNavAgentNextDestination()
@@ -106,17 +108,17 @@ public class EnemyNavMeshAgentController : MonoBehaviour
     
     void Update()
     {
-        if (!_destinationIsValid) return;
+        if (!_gameManager.waveTimerIsActive) return;
         
         // Set height of the flying enemy to approach the destination point, as NavMeshAgent doesn't do this
         float distFromDestination = Vector3.Distance(_navMeshAgent.transform.position, _targetDestination);
-        // Debug.Log("distFromDestination: "+distFromDestination);
+        // log("distFromDestination: "+distFromDestination);
         float lerpFactor = 1f - (Vector3.Distance(_navMeshAgent.transform.position, _targetDestination) /
                             Vector3.Distance(_previousEnemyPosition, _targetDestination));
         lerpFactor = Mathf.Abs(lerpFactor);
         
         Vector3 lerpedVector3 = Vector3.Lerp(_previousEnemyPosition, _targetDestination, lerpFactor);
-        // Debug.Log("Lerpfactor: "+lerpFactor);
+        // log("Lerpfactor: "+lerpFactor);
         // If 1 metre == 1.5 unit of baseOffset, then to find x unit of baseOffset = (x metres * 1.5)/1
         _navMeshAgent.baseOffset = (lerpedVector3.y * 1.5f);
 
@@ -125,7 +127,7 @@ public class EnemyNavMeshAgentController : MonoBehaviour
         {
             SetNewNavAgentDestination();
         }
-        // else Debug.Log("Remaining Dist: "+distFromDestination);
+        // else log("Remaining Dist: "+distFromDestination);
         
         CheckIfEnemyIsStuckInSamePosition(_navMeshAgent.transform.position);
         
@@ -147,12 +149,18 @@ public class EnemyNavMeshAgentController : MonoBehaviour
 
         if (enemyStuckInSamePositionCount > 10)
         {
-            Debug.Log("Enemy Was Stuck At Position "+currentPos+". Correcting this");
+            log("Enemy Was Stuck At Position "+currentPos+". Correcting this");
             enemyStuckInSamePositionCount = 0;
             SetNewNavAgentDestination();
         }
 
         _prevNavAgentPosition = currentPos;
+    }
+    
+    
+    private void log(string logText){
+        string className = this.GetType().Name;
+        Debug.Log("["+className+"]  " +logText);
     }
 
 }
