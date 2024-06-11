@@ -24,14 +24,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private FindSpawnPositions _findSpawnPositions;
     [SerializeField] private PassthroughManager passthroughManager;
     [SerializeField] private EnemySpawnManager _enemySpawnManager;
-    [SerializeField] private GameObject enemyDestroyEffect;
+    [SerializeField] private AlienPortalManager _alienPortalManager;
     [SerializeField] private Hovl_DemoLasers leftEyeLaser;
     [SerializeField] private Hovl_DemoLasers rightEyeLaser;
-    [SerializeField] private GameObject alienPortal;
-    [SerializeField] private Collider gameStartTriggerArea; 
     [SerializeField] private int _wave1Enemies = 1;
     [SerializeField] private int _wave2Enemies = 2;
     [SerializeField] private int _wave3Enemies = 3;
+    [SerializeField] private GameObject enemyDestroyEffect;
 
     public string timeLeft = "0:00";
     
@@ -120,8 +119,7 @@ public class GameManager : MonoBehaviour
     {
         // Countdown before spawning the alien Portal
         yield return new WaitForSeconds(gameStartDelay);
-        // alienPortal.SetActive(true);
-        onIntroCompleted.Invoke();
+        _alienPortalManager.OpenPortal();
         log("Spawning Alien Portal");
     }
     #endregion
@@ -143,7 +141,7 @@ public class GameManager : MonoBehaviour
     private void HandleGameStarted()
     {
         gameStarted = true;
-        // backgroundMusicSource.Play();
+        backgroundMusicSource.Play();
         passthroughManager.SetActiveLayer(0);
         StartCoroutine(SpawnTriggerAreaCoroutine());
         log("Game Started");
@@ -380,9 +378,4 @@ public class GameManager : MonoBehaviour
     }
 
 
-}
-
-public class UnityEventGameObject : UnityEvent<GameObject>
-{
-    
 }
