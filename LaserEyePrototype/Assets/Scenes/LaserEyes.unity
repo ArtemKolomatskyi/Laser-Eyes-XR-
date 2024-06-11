@@ -8242,7 +8242,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1546441804}
-  - component: {fileID: 1546441803}
   - component: {fileID: 1546441802}
   m_Layer: 0
   m_Name: '[BuildingBlock] Find Spawn Positions'
@@ -8276,21 +8275,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   SurfaceClearanceDistance: 0.1
---- !u!114 &1546441803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1546441801}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockId: 93762ef0-9738-45f4-bb87-bdb9a0acb994
-  instanceId: edcc3416-8376-496c-a5ea-d8cac84a4eae
-  version: 1
 --- !u!4 &1546441804
 Transform:
   m_ObjectHideFlags: 0
@@ -12799,7 +12783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnOnStart: 2
-  MeshMaterial: {fileID: 2100000, guid: 7938f8b20808f4144bd2e1dc63e06927, type: 2}
+  MeshMaterial: {fileID: 2100000, guid: 531ef2f938fb76f4f8038af579e4c4d8, type: 2}
   BorderSize: 0
   Colliders: 1
   CutHoles: 0
