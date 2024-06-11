@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80be64a601ff65e41b0a8036ba872084, type: 3}
+  m_Name: TTSPreloadSettings
+  m_EditorClassIdentifier: 
+  data:
+    voices:
+    - presetVoiceID: HAROLD
+      phrases:
+      - clipID: ca6960042c1d83d0a4c4c3799c16fcc0e4de3c50a20c0606b4038ce9a651e7da
+        textToSpeak: Wave 1
+        downloaded: 1
+        downloadProgress: 1
+    - presetVoiceID: HAROLD
+      phrases:
+      - clipID: acccc09cff656d4f46c48e5e42157576ed81cf135b29176e4db3f7bf32dba882
+        textToSpeak: Wave 2
+        downloaded: 1
+        downloadProgress: 1
+    - presetVoiceID: HAROLD
+      phrases:
+      - clipID: 3adb3ab0d5d8ae2e45e0b7b8797786db1ca7d0cd52359e0772e33f4f74d983b9
+        textToSpeak: Wave 3
+        downloaded: 1
+        downloadProgress: 1
+    - presetVoiceID: HAROLD
+      phrases:
+      - clipID: ec11f8231fba19bb90af5860f9af3191c83b00d350462b1b111bf49b42a0b4dd
+        textToSpeak: "Hello, human! My name is Experiment 369. I\u2019ve just escaped
+          from a lab run by evil scientists who plan to unleash a terrifying weapon
+          upon the world: powerful Evil Kamikaze Nuke Drones. I need your help to
+          stop them!"
+        downloaded: 1
+        downloadProgress: 1
+    - presetVoiceID: HAROLD
+      phrases:
+      - clipID: fff0344b944979f38aa92783dc5cfe1f22fcbbdacd5d67446f03e80a948a18ab
+        textToSpeak: "Oh no, they\u2019ve found me! They\u2019ll be here soon!"
+        downloaded: 1
+        downloadProgress: 1
+    - presetVoiceID: HAROLD
+      phrases:
+      - clipID: 632c1b89ccbbe4bbf80787561dc59facc26ce0343c6000a7fcb8a8633923e8e1
+        textToSpeak: "Listen closely, as time is short. I can\u2019t fight, but I
+          can grant you a special ability\u2014laser eyes!"
+        downloaded: 1
+        downloadProgress: 1
+    - presetVoiceID: HAROLD
+      phrases:
+      - clipID: 4f5aa22508ee47d1edda830bd2ea610e83b8eabc5d67df8142c36af45ac54a66
+        textToSpeak: Whenever you find a blue-lit area in your room, run to it. Standing
+          in the blue light will give you a 15-second superpower. Use your laser
+          eyes to fight off the invading aliens and protect our world.
+        downloaded: 1
+        downloadProgress: 1
+    - presetVoiceID: HAROLD
+      phrases:
+      - clipID: 934e9dd73f9da9011d41b7d2508724f87c27d64126a75c824fe9e03e11b58b4c
+        textToSpeak: Remember, your superpower only affects the aliens; your home
+          remains safe from harm.
+        downloaded: 1
+        downloadProgress: 1
+    - presetVoiceID: HAROLD
+      phrases:
+      - clipID: 4972a1a1bf56046f054e23039c245a35ea40b1dba8fc6f86269664a68490857d
+        textToSpeak: Prepare yourself, brave human. The fate of the world is in your
+          hands!
+        downloaded: 1
+        downloadProgress: 1

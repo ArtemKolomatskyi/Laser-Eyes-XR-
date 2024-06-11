@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
 
 
     [Header("Events")]
+    public UnityEvent onIntroStart;
     public UnityEvent onIntroCompleted;
     public UnityEvent onGameStarted;
     public UnityEvent onTriggerAreaSpawned;

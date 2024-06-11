@@ -30,7 +30,6 @@ public class AlienPortalManager : MonoBehaviour
     public void OpenPortal()
     {
         openPortal = true;
-        StartCoroutine(IntroductionCompletedCoroutine());
     }
     
     private void ShowPortal()
@@ -45,6 +44,7 @@ public class AlienPortalManager : MonoBehaviour
         yield return new WaitForSeconds(_portalAnimateLocalScale.animTime);
         _experiment369Intro.ShowExperiment369((_portal.transform.position + (_portal.transform.forward * 0.3f)),
             (_portal.transform.rotation * Quaternion.Euler(new Vector3(0f, 180f, 0f))));
+        _gameManager.onIntroStart.Invoke();
     }
     
     
@@ -58,13 +58,6 @@ public class AlienPortalManager : MonoBehaviour
         yield return new WaitForSeconds(_portalAnimateLocalScale.animTime);
         _portalParticleSystem.Stop();
     }
-    
-    private IEnumerator IntroductionCompletedCoroutine()
-    {
-        yield return new WaitForSeconds(7f);
-        _gameManager.onIntroCompleted.Invoke();
-    }
-    
     
     
     private void FixedUpdate()
