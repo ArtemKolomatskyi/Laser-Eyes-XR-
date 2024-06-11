@@ -7,7 +7,8 @@ using UnityEngine;
 public class Hovl_DemoLasers : MonoBehaviour
 {
    // public float ClipLenght = 1f;
-    public GameObject AudioClip;
+    public AudioSource laserSoundSfx;
+    public AudioSource enemyHitSfx;
     
     public GameObject FirePoint;
     public Camera Cam;
@@ -30,7 +31,7 @@ public class Hovl_DemoLasers : MonoBehaviour
 
     void Start()
     {
-        AudioClip.SetActive(false);
+        //AudioClip.SetActive(false);
         
         //LaserEndPoint = new Vector3(0, 0, 0);
         if (Screen.dpi < 1) windowDpi = 1;
@@ -41,59 +42,6 @@ public class Hovl_DemoLasers : MonoBehaviour
 
     void Update()
     {
-        //Enable lazer
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartShootLaser();
-            
-        }
-
-        //Disable lazer prefab
-        if (Input.GetMouseButtonUp(0))
-        {
-            StopShootingLaser();
-        }
-
-        //To change lazers
-        if ((Input.GetKey(KeyCode.A) || Input.GetAxis("Horizontal") < 0) && buttonSaver >= 0.4f) // left button
-        {
-            buttonSaver = 0f;
-            Counter(-1);
-        }
-
-        if ((Input.GetKey(KeyCode.D) || Input.GetAxis("Horizontal") > 0) && buttonSaver >= 0.4f) // right button
-        {
-            buttonSaver = 0f;
-            Counter(+1);
-        }
-
-        buttonSaver += Time.deltaTime;
-
-
-        //Current fire point
-        /*if (Cam != null)
-        {
-            RaycastHit hit; //DELATE THIS IF YOU WANT TO USE LASERS IN 2D
-            var mousePos = Input.mousePosition;
-            RayMouse = Cam.ScreenPointToRay(mousePos);
-            //ADD THIS IF YOU WANT TO USE LASERS IN 2D: RaycastHit2D hit = Physics2D.Raycast(RayMouse.origin, RayMouse.direction, MaxLength);
-            if (Physics.Raycast(RayMouse.origin, RayMouse.direction, out hit, MaxLength)) //CHANGE THIS IF YOU WANT TO USE LASERRS IN 2D: if (hit.collider != null)
-            {
-                RotateToMouseDirection(gameObject, hit.point);
-                //LaserEndPoint = hit.point;
-            }
-            else
-            {
-                var pos = RayMouse.GetPoint(MaxLength);
-                RotateToMouseDirection(gameObject, pos);
-                //LaserEndPoint = pos;
-            }
-        }
-        else
-        {
-            Debug.Log("No camera");
-        }
-    }*/
 
     }
 
@@ -103,6 +51,7 @@ public class Hovl_DemoLasers : MonoBehaviour
         if (LaserScript) LaserScript.DisablePrepare();
         if (LaserScript2) LaserScript2.DisablePrepare();
         Destroy(Instance, 1);
+        //enemyHitSfx.Stop();
     }
 
     // Start shooting laser
