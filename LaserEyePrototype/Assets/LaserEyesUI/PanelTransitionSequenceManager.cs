@@ -43,7 +43,7 @@ public class PanelTransitionSequenceManager : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
         DeactivateAllPanels();
-        laserWelcomePanel.SetActive(true); // Start with LaserWelcome panel active
+        // laserWelcomePanel.SetActive(true); // Start with LaserWelcome panel active
         currentPanel = laserWelcomePanel;
     }
 
@@ -51,9 +51,9 @@ public class PanelTransitionSequenceManager : MonoBehaviour
     {
         gameManager.onGameWon.AddListener(() => PlayPanel(currentPanel, youWinPanel));
         gameManager.onGameOver.AddListener(() =>PlayPanel(currentPanel, gameOverPanel));
-        gameManager.onIntroCompleted.AddListener(() =>PlayPanel(currentPanel, laserWelcomePanel));
-        gameManager.onGameStarted.AddListener(() =>PlayPanel(currentPanel, instructionsPanel));
-        gameManager.onTriggerAreaSpawned.AddListener(() =>PlayPanel(currentPanel, laserActivatedPanel));
+        // gameManager.onIntroCompleted.AddListener(() =>PlayPanel(currentPanel, laserWelcomePanel));
+        // gameManager.onGameStarted.AddListener(() =>PlayPanel(currentPanel, instructionsPanel));
+        // gameManager.onTriggerAreaSpawned.AddListener(() =>PlayPanel(currentPanel, laserActivatedPanel));
     }
 
     private void Update()
