@@ -22,7 +22,8 @@ public class AlienPortalManager : MonoBehaviour
         if(!_portalParticleSystem) _portalParticleSystem = _portal.GetComponent<ParticleSystem>();
         if(!_portalAnimateLocalScale) _portalAnimateLocalScale = _portal.GetComponent<AnimateLocalScale>();
         _gameManager = FindObjectOfType<GameManager>();
-        // _gameManager.onIntroCompleted.AddListener(HidePortal);
+        _gameManager.onGameWon.AddListener(HidePortal);
+        _gameManager.onGameOver.AddListener(HidePortal);
         
         _portalParticleSystem.Stop();
     }

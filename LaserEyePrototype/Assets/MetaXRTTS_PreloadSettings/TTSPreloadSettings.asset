@@ -56,12 +56,11 @@ MonoBehaviour:
         downloadProgress: 1
     - presetVoiceID: HAROLD
       phrases:
-      - clipID: 4f5aa22508ee47d1edda830bd2ea610e83b8eabc5d67df8142c36af45ac54a66
-        textToSpeak: Whenever you find a blue-lit area in your room, run to it. Standing
-          in the blue light will give you a 15-second superpower. Use your laser
-          eyes to fight off the invading aliens and protect our world.
+      - clipID: c66aac4b6967aa3b216a6bcc94041dd49aabcc8e145ba08f6a7d25f4cd9092dc
+        textToSpeak: Use your laser eyes to fight off the invading aliens and protect
+          our world.
         downloaded: 1
-        downloadProgress: 1
+        downloadProgress: 0
     - presetVoiceID: HAROLD
       phrases:
       - clipID: 934e9dd73f9da9011d41b7d2508724f87c27d64126a75c824fe9e03e11b58b4c
