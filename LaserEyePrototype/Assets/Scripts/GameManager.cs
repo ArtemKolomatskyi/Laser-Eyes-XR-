@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
 
     
     #region GAME START
-    private void OnIntroCompleted()
+    public void OnIntroCompleted()
     {
         StartCoroutine(StartGameCoroutine());
     }
