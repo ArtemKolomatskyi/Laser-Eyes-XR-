@@ -33,10 +33,12 @@ public class HS_HittedObject : MonoBehaviour {
         healthBar.fillAmount = health / startHealth;
         if(health <= 0)
         {
+	        Debug.Log("Enemy has been destroyed");
 	        gameManager.onEnemyDestroyed.Invoke(gameObject);	//The enemy is destroyed by this function
         }
         else
         {
+	        Debug.Log("Enemy took damage");
 	        gameManager.onEnemyHit.Invoke();
         }
     }
