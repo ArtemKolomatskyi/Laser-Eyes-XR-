@@ -237,7 +237,8 @@ public class GameManager : MonoBehaviour
         onCurrentWaveEnd.Invoke(currentWave);
         waveTimerIsActive = false;
         SetNextWave();
-        StartCoroutine(SpawnTriggerAreaCoroutine());
+        // StartCoroutine(SpawnTriggerAreaCoroutine());
+        StartCoroutine(StartNextWave());
         log("Wave "+currentWave+" ended");
     }
 

@@ -3576,9 +3576,8 @@ MonoBehaviour:
   introText2: "Oh no, they\u2019ve found me! They\u2019ll be here soon!"
   introText3: "Listen closely, as time is short. I can\u2019t fight, but I can grant
     you a special ability\u2014laser eyes!"
-  introText4: Whenever you find a blue-lit area in your room, run to it. Standing
-    in the blue light will give you a 15-second superpower. Use your laser eyes to
-    fight off the invading aliens and protect our world.
+  introText4: Use your laser eyes to fight off the invading aliens and protect our
+    world.
   introText5: Remember, your superpower only affects the aliens; your home remains
     safe from harm.
   introText6: Prepare yourself, brave human. The fate of the world is in your hands!
