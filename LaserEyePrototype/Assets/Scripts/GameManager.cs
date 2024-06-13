@@ -251,6 +251,7 @@ public class GameManager : MonoBehaviour
     {
         leftEyeLaser.StopShootingLaser();
         rightEyeLaser.StopShootingLaser();
+        enemyHitSoundSource.Stop();
     }
     #endregion
 

@@ -2666,12 +2666,13 @@ AudioSource:
   m_GameObject: {fileID: 492133541}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8cc8b62211f9fa149b63f3032ed815b0, type: 3}
-  m_PlayOnAwake: 1
+  OutputAudioMixerGroup: {fileID: 797588077134128713, guid: 1b2ce5bdc5a64df4c959ec25d3595b8c,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 0dd0f3baeba7f1948b8b1855bfcac91e, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -7624,6 +7625,12 @@ PrefabInstance:
       objectReference: {fileID: 99505703}
     - target: {fileID: 4766372760218245507, guid: f5d2d46905859cb43aeb9be1e6d74ce1,
         type: 3}
+      propertyPath: enemyDestroyEffect
+      value: 
+      objectReference: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312,
+        type: 3}
+    - target: {fileID: 4766372760218245507, guid: f5d2d46905859cb43aeb9be1e6d74ce1,
+        type: 3}
       propertyPath: passthroughManager
       value: 
       objectReference: {fileID: 628681938}
@@ -7637,6 +7644,11 @@ PrefabInstance:
       propertyPath: _findSpawnPositions
       value: 
       objectReference: {fileID: 1546441802}
+    - target: {fileID: 4766372760218245507, guid: f5d2d46905859cb43aeb9be1e6d74ce1,
+        type: 3}
+      propertyPath: enemyHitSoundSource
+      value: 
+      objectReference: {fileID: 492133542}
     - target: {fileID: 4766372760218245507, guid: f5d2d46905859cb43aeb9be1e6d74ce1,
         type: 3}
       propertyPath: gameStartTriggerArea

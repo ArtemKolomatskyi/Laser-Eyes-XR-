@@ -15,6 +15,8 @@ public class TriggerAreaDetector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Collider Trigger entered");
+        
         if (other == _gameStartTriggerArea)
         {
             _gameManager.OnUserEnteredTriggerArea(other.gameObject);
