@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Events")]
     public UnityEvent onIntroStart;
+    // public UnityEvent onIntroSkipped;
     public UnityEvent onIntroCompleted;
     public UnityEvent onGameStarted;
     public UnityEvent onTriggerAreaSpawned;
@@ -74,7 +75,8 @@ public class GameManager : MonoBehaviour
     private float _wave3Timer = 0f;
     public bool waveTimerIsActive { get; private set; } = false;
     private List<GameObject> _enemies = new List<GameObject>();
-    
+
+    private bool _introCompleted = false;
     // public CurrentWave currentWave = CurrentWave.Wave1;
 
 
@@ -93,6 +95,7 @@ public class GameManager : MonoBehaviour
         gameStarted = false;
         currentWave = CurrentWave.Wave1;
         timeLeft = "0:00";
+        _introCompleted = false;
     }
     
     private void ResetWaveVariables()
@@ -123,12 +126,19 @@ public class GameManager : MonoBehaviour
         _alienPortalManager.OpenPortal();
         log("Spawning Alien Portal");
     }
+
+    public void SkipIntro()
+    {
+        onIntroCompleted.Invoke();
+    }
     #endregion
 
     
     #region GAME START
     private void OnIntroCompleted()
     {
+        if(_introCompleted) return;
+        _introCompleted = true;
         StartCoroutine(StartGameCoroutine());
     }
     
@@ -144,7 +154,8 @@ public class GameManager : MonoBehaviour
         gameStarted = true;
         backgroundMusicSource.Play();
         passthroughManager.SetActiveLayer(0);
-        StartCoroutine(SpawnTriggerAreaCoroutine());
+        // StartCoroutine(SpawnTriggerAreaCoroutine());
+        StartCoroutine(StartNextWave());
         log("Game Started");
     }
     

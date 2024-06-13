@@ -22,7 +22,7 @@ public class AlienPortalManager : MonoBehaviour
         if(!_portalParticleSystem) _portalParticleSystem = _portal.GetComponent<ParticleSystem>();
         if(!_portalAnimateLocalScale) _portalAnimateLocalScale = _portal.GetComponent<AnimateLocalScale>();
         _gameManager = FindObjectOfType<GameManager>();
-        _gameManager.onIntroCompleted.AddListener(HidePortal);
+        // _gameManager.onIntroCompleted.AddListener(HidePortal);
         
         _portalParticleSystem.Stop();
     }
@@ -42,9 +42,11 @@ public class AlienPortalManager : MonoBehaviour
     private IEnumerator ShowExperiment369()
     {
         yield return new WaitForSeconds(_portalAnimateLocalScale.animTime);
-        _experiment369Intro.ShowExperiment369((_portal.transform.position + (_portal.transform.forward * 0.3f)),
+        _experiment369Intro.ShowExperiment369(_portal.transform.position, 
+            (_portal.transform.position + (_portal.transform.forward * 0.3f)),
             (_portal.transform.rotation * Quaternion.Euler(new Vector3(0f, 180f, 0f))));
-        _gameManager.onIntroStart.Invoke();
+        yield return new WaitForSeconds(_experiment369Intro.experiment369OutOfPortalDelay);
+        _gameManager.onIntroStart.Invoke();     //TTS Speech Intro
     }
     
     

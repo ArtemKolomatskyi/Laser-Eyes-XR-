@@ -42,6 +42,7 @@ public class TTSSpeakerManager : MonoBehaviour
         
         _gameManager = FindObjectOfType<GameManager>();
         _gameManager.onIntroStart.AddListener(Speak_IntroText);
+        _gameManager.onIntroCompleted.AddListener(StopIntro);
         _gameManager.onNewWaveDisplay.AddListener(Speak_CurrentWave);
     }
 
@@ -63,6 +64,13 @@ public class TTSSpeakerManager : MonoBehaviour
         _ttsSpeaker.SpeakQueued(introText5);
         _ttsSpeaker.SpeakQueued(introText6);
         _ttsSpeaker.Events.OnPlaybackQueueComplete.AddListener(IntroductionCompleted);
+    }
+
+    private void StopIntro()
+    {
+        _ttsSpeaker.Stop();
+        _ttsSpeaker.QueuedClips.Clear();
+        log("Stopping TTSSpeaker and clearing Queued Clips");
     }
     
     private void IntroductionCompleted()
