@@ -14,6 +14,10 @@ public class YoyoDoAnimation : MonoBehaviour
 
     void OnEnable()
     {
+    }
+    
+    public void DoYoyoAnimation()
+    {
         _moveDist = _moveDistance;
         _originalLocalYPos = transform.localPosition.y;
         _animate = true;
@@ -37,6 +41,8 @@ public class YoyoDoAnimation : MonoBehaviour
     {
         _originalLocalYPos = transform.localPosition.y;
     }
+
+
 
     private void OnDisable()
     {

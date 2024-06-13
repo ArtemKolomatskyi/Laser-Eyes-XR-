@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Meta.XR.MRUtilityKit;
 using Unity.Mathematics;
 using UnityEngine;
@@ -9,6 +10,7 @@ using UnityEngine.AI;
 public class EnemySpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private Transform _spawnPoint;
     [SerializeField] private float _spawnDelay = 1.5f;
     private MRUKRoom _room;
     private GameManager _gameManager;
@@ -33,7 +35,7 @@ public class EnemySpawnManager : MonoBehaviour
     {
         yield return new WaitForSeconds(_spawnDelay);
         
-        Debug.Log("MRUK Room Nav Mesh Has Been Created");
+        Debug.Log("Spawning Enemy");
         if (!_room) _room = MRUK.Instance?.GetCurrentRoom();
         if (!_room)
         {
@@ -41,20 +43,28 @@ public class EnemySpawnManager : MonoBehaviour
             yield return null;
         }
 
-        NavMeshAgent navMeshAgent = _enemyPrefab.GetComponent<NavMeshAgent>();
-        
-        Vector3? nullablePosition = null;
-        while (nullablePosition == null)
-        {
-            nullablePosition = 
-                _room.GenerateRandomPositionInRoom(navMeshAgent.radius*2f, true);
-            if(nullablePosition == null) Debug.LogError("TargetDestination inside MRUK Current Room is NULL");
-        }
-        Vector3 position = nullablePosition ?? Vector3.zero;
-        position.y = 0;
+        // NavMeshAgent navMeshAgent = _enemyPrefab.GetComponent<NavMeshAgent>();
+        // Vector3? nullablePosition = null;
+        // while (nullablePosition == null)
+        // {
+        //     nullablePosition = 
+        //         _room.GenerateRandomPositionInRoom(navMeshAgent.radius*2f, true);
+        //     if(nullablePosition == null) Debug.LogError("TargetDestination inside MRUK Current Room is NULL");
+        // }
+        // Vector3 position = nullablePosition ?? Vector3.zero;
+        // position.y = 0;
 
-        GameObject enemy = Instantiate(_enemyPrefab, position, Quaternion.identity);
+        GameObject enemy = Instantiate(_enemyPrefab, _spawnPoint.position, Quaternion.identity);
         _gameManager.EnemySpawned(enemy);
+        AnimationMotionOutOfPortal(enemy);
+
+        // GameObject enemy = Instantiate(_enemyPrefab, position, Quaternion.identity);
+    }
+
+    /// <see cref="PooledPrefabsList"/> also waits for this duration of time in order to give enemy a target position
+    private void AnimationMotionOutOfPortal(GameObject enemy)
+    {
+        enemy.transform.DOMove((_spawnPoint.position + _spawnPoint.forward * 0.3f), 1.5f);
     }
 
     private void OnDestroy()

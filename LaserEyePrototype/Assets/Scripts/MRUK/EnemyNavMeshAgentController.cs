@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Meta.XR.MRUtilityKit;
@@ -44,7 +45,7 @@ public class EnemyNavMeshAgentController : MonoBehaviour
     // A delay before the NavAgent is properly configured
     IEnumerator SetNavAgentDestination_AfterDelay()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f); //To allow enemy to come out of the portal
         // yield return new WaitForFixedUpdate();
         SetNewNavAgentDestination();
     }
@@ -129,8 +130,6 @@ public class EnemyNavMeshAgentController : MonoBehaviour
         }
         // else log("Remaining Dist: "+distFromDestination);
         
-        CheckIfEnemyIsStuckInSamePosition(_navMeshAgent.transform.position);
-        
         #if UNITY_EDITOR
             XRGizmos.DrawSphere(_targetDestination, _navMeshAgent.radius, Color.green);
         #endif
@@ -142,19 +141,49 @@ public class EnemyNavMeshAgentController : MonoBehaviour
     private Vector3 _prevNavAgentPosition = Vector3.zero;
     private int enemyStuckInSamePositionCount = 0;
 
+    private void FixedUpdate()
+    {
+        CheckIfEnemyIsStuckInSamePosition(_navMeshAgent.transform.position);
+    }
+
     private void CheckIfEnemyIsStuckInSamePosition(Vector3 currentPos)
     {
-        if (_prevNavAgentPosition == currentPos) enemyStuckInSamePositionCount++;
-        else enemyStuckInSamePositionCount = 0;
-
-        if (enemyStuckInSamePositionCount > 10)
+        if (IsWithinSphere(_prevNavAgentPosition, currentPos, 0.3f))
         {
-            log("Enemy Was Stuck At Position "+currentPos+". Correcting this");
-            enemyStuckInSamePositionCount = 0;
-            SetNewNavAgentDestination();
+            Debug.Log("The object is within the sphere radius.");
+            enemyStuckInSamePositionCount++;
+            if (enemyStuckInSamePositionCount > 10)
+            {
+                log("Enemy Was Stuck At Position "+currentPos+". Correcting this");
+                enemyStuckInSamePositionCount = 0;
+                SetNewNavAgentDestination();
+            }
         }
+        else
+        {
+            _prevNavAgentPosition = currentPos;
+            enemyStuckInSamePositionCount = 0;
+        }
+        
+        // if (_prevNavAgentPosition == currentPos) enemyStuckInSamePositionCount++;
+        // else enemyStuckInSamePositionCount = 0;
+        //
+        // if (enemyStuckInSamePositionCount > 10)
+        // {
+        //     log("Enemy Was Stuck At Position "+currentPos+". Correcting this");
+        //     enemyStuckInSamePositionCount = 0;
+        //     SetNewNavAgentDestination();
+        // }
+        // _prevNavAgentPosition = currentPos;
 
-        _prevNavAgentPosition = currentPos;
+    }
+    
+    // Function to check if a position is within a sphere radius
+    bool IsWithinSphere(Vector3 position, Vector3 center, float radius)
+    {
+        float distanceSquared = (position - center).sqrMagnitude;
+        float radiusSquared = radius * radius;
+        return distanceSquared <= radiusSquared;
     }
     
     
